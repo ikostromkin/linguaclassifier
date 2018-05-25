@@ -1,0 +1,42 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <form action="{{ url_for('respondent.add_respondent', research_id=research_id) }}" method="post"
+          id="add_respondent_form">
+        {{ form.csrf_token }}
+        <div class="form-group">
+            <label for="field1">{{ fields[0] }}</label>
+            {{ form.field1(class_="form-control", placeholder="Введите " + fields[0], required='') }}
+        </div>
+
+        {% if count >= 2 %}
+            <div class="form-group">
+                <label for="field2">{{ fields[1] }}</label>
+                {{ form.field2(class_="form-control", placeholder="Введите " + fields[1], required='') }}
+            </div>
+        {% endif %}
+
+        {% if count >= 3 %}
+            <div class="form-group">
+                <label for="field3">{{ fields[2] }}</label>
+                {{ form.field3(class_="form-control", placeholder="Введите " + fields[2], required='') }}
+            </div>
+        {% endif %}
+
+        {% if count >= 4 %}
+            <div class="form-group">
+                <label for="field4">{{ fields[3] }}</label>
+                {{ form.field4(class_="form-control", placeholder="Введите " + fields[3], required='') }}
+            </div>
+        {% endif %}
+
+        {% if count == 5 %}
+            <div class="form-group">
+                <label for="field5">{{ fields[4] }}</label>
+                {{ form.field5(class_="form-control", placeholder="Введите " + fields[4], required='') }}
+            </div>
+        {% endif %}
+
+        <button type="submit" class="btn btn-primary btn-block m-t-2">Далее</button>
+    </form>
+{% endblock %}

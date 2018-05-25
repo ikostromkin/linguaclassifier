@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <form action="{{ url_for('group.add_group', research_id=research_id, respondent_id=respondent_id) }}" method="post"
+          id="add_group_form">
+        <div class="form-group">
+            <label for="InputName">Название группы</label>
+            <input name="name" type="text" class="form-control" id="InputName"
+                   placeholder="Введите название группы" required>
+        </div>
+        {% for word in material %}
+            <div class="form-check-inline m-1">
+                <label class="form-check-label">
+                    <input class="form-check-input" name="check" type="checkbox" value="{{ word }}"> {{ word }}
+                </label>
+            </div>
+        {% endfor %}
+
+        <button type="submit" class="btn btn-primary btn-block m-t-2">Добавить группу</button>
+    </form>
+{% endblock %}

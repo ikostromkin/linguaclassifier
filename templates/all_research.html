@@ -1,0 +1,39 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <a class="btn btn-primary mb-3" href="{{ url_for('research.add_research') }}">Добавить исследование</a>
+    <table class="table table-hover">
+        <thead>
+        <tr>
+            <th>#</th>
+            <th>Страница исследования</th>
+            <th>Количество опрошеных</th>
+            <th>Уникальная ссылка</th>
+            <th>Отчет</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% if not researches %}
+            <tr>
+                <td colspan="5" class="text-center"> У вас еще нет ни одного исследования. Нажмите на кнопку выше
+                    что-бы добавить первое.
+                </td>
+            </tr>
+        {% endif %}
+        {% for research in researches %}
+            <tr>
+                <th scope="row">{{ loop.index }}</th>
+                <td>
+{#                    <a href="{{ url_for('research.research', id=research.id) }}">{{ research.name }}</a>#}
+                    {{ research.name }}
+                </td>
+                <td>{{ research.count }}</td>
+                <td>http://127.0.0.1:5000/respondent/add/{{ research.id }}</td>
+                <td>
+                    <a href="{{ url_for('research.download', id=research.id) }}">Cкачать отчет</a>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+{% endblock %}

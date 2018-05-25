@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>Lingua Classifier</title>
+
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link href="{{ url_for('static', filename='main.css') }}" rel="stylesheet">
+</head>
+
+<body>
+<nav class="navbar navbar-expand navbar-light bg-light">
+    <div class="container">
+        <a class="navbar-brand" href="{{ url_for('index') }}">Lingua Classifier<sup> alpha</sup></a>
+        <div class="navbar-nav pull-xs-right">
+            {% if request.path == url_for('research.all_research') %}
+                <a class="nav-item nav-link active" href="{{ url_for('research.all_research') }}">
+                    <span>Мои исследования</span>
+                </a>
+            {% else %}
+                <a class="nav-item nav-link" href="{{ url_for('research.all_research') }}">
+                    <span>Мои исследования</span>
+                </a>
+            {% endif %}
+            <a class="nav-item nav-link" href="{{ url_for('login.logout') }}">
+                <span>Выйти</span>
+            </a>
+        </div>
+    </div>
+</nav>
+
+<div class="container p-3">
+    {% block content %}
+    {% endblock %}
+</div>
+
+<script src="{{ url_for('static', filename='main.js') }}"></script>
+</body>
+</html>

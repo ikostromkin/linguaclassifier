@@ -1,0 +1,53 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <h4 class="mb-3">Добавление нового исследования</h4>
+    <form action="{{ url_for('research.add_research') }}" method="post">
+        {{ form.csrf_token }}
+        <div class="form-group">
+            <label for="name">Название исследования</label>
+            {% if form.errors.name %}
+            {{ form.name(class_="form-control is-invalid", placeholder="Введите название исследования") }}
+            {% else %}
+            {{ form.name(class_="form-control", placeholder="Введите название исследования") }}
+            {% endif %}
+            <div class="invalid-feedback">
+                Введите название исследования
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="material">Материал исследования</label>
+            {% if form.errors.material %}
+            {{ form.material(class_="form-control is-invalid", placeholder="Введите материал исследования (через пробел)") }}
+            {% else %}
+            {{ form.material(class_="form-control", placeholder="Введите материал исследования (через пробел)") }}
+            {% endif %}
+            <div class="invalid-feedback">
+                Введите материал исследования (через пробел)
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="task">Задание для респондента</label>
+            {% if form.errors.task %}
+            {{ form.task(class_="form-control is-invalid", placeholder="Введите задание") }}
+            {% else %}
+            {{ form.task(class_="form-control", placeholder="Введите задание") }}
+            {% endif %}
+            <div class="invalid-feedback">
+                Введите задание для респондента
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="fields">Какие данные о респонденте вы хотите получить?</label>
+            {% if form.errors.fields %}
+            {{ form.fields(class_="form-control is-invalid", placeholder="Введите название полей через пробел (максимум 5)") }}
+            {% else %}
+            {{ form.fields(class_="form-control", placeholder="Введите название полей через пробел (максимум 5)") }}
+            {% endif %}
+            <div class="invalid-feedback">
+                Введите корректные названия полей (не более 5)
+            </div>
+        </div>
+        <button type="submit" class="btn btn-primary btn">Добавить исследование</button>
+    </form>
+{% endblock %}

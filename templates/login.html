@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>Авторизация - Lingua Classifier</title>
+
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link href="{{ url_for('static', filename='main.css') }}" rel="stylesheet">
+</head>
+<body>
+<nav class="navbar navbar-expand navbar-light bg-light">
+    <div class="container">
+        <a class="navbar-brand" href="{{ url_for('index') }}">Lingua Classifier<sup> alpha</sup></a>
+        <div class="navbar-nav pull-xs-right">
+            {#            <a class="nav-item nav-link" href="{{ url_for('login.join') }}">#}
+            {#                <span>Регистрация</span>#}
+            {#            </a>#}
+            <a class="nav-item nav-link active" href="{{ url_for('login.login') }}">
+                <span>Вход</span>
+            </a>
+        </div>
+    </div>
+</nav>
+<div class="container p-3">
+    <div class="row justify-content-center">
+        <form class="col-4" action="{{ url_for('login.login') }}" method="post">
+            {{ form.csrf_token }}
+            <div class="form-group">
+                {% if form.errors.email %}
+                {{ form.email(class_="form-control is-invalid", placeholder="Введите email") }}
+                {% else %}
+                {{ form.email(class_="form-control", placeholder="Введите email") }}
+                {% endif %}
+                <div class="invalid-feedback">
+                    Введите корректный email
+                </div>
+            </div>
+            <div class="form-group">
+                {% if form.errors.password %}
+                {{ form.password(class_="form-control is-invalid", placeholder="Введите пароль") }}
+                {% else %}
+                {{ form.password(class_="form-control", placeholder="Введите пароль") }}
+                {% endif %}
+                <div class="invalid-feedback">
+                    Введите пароль
+                </div>
+            </div>
+            {{ form.submit }}
+            <button type="submit" class="btn btn-primary btn-block">Войти</button>
+        </form>
+    </div>
+</div>
+
+<script src="{{ url_for('static', filename='main.js') }}"></script>
+</body>
+</html>
