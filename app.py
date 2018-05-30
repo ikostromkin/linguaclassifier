@@ -1,5 +1,6 @@
 from flask import Flask, render_template, redirect, url_for
 from flask_login import LoginManager, current_user
+from werkzeug.contrib.fixers import ProxyFix
 from models import *
 
 
@@ -38,5 +39,6 @@ def index():
         return render_template('index.html')
 
 
+app.wsgi_app = ProxyFix(app.wsgi_app)
 if __name__ == '__main__':
     app.run()

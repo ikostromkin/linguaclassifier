@@ -1,4 +1,4 @@
-from flask import Blueprint, render_template, redirect, url_for, flash
+from flask import Blueprint, render_template, redirect, url_for, send_file
 from flask_login import login_required, current_user
 from .forms import AddResearchForm
 from models import *
@@ -45,4 +45,4 @@ def add_research():
 @login_required
 def download(id):
     create_report(id)
-    return redirect(url_for('index'))
+    return send_file('temp.xlsx')

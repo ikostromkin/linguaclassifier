@@ -1,6 +1,21 @@
-{% extends 'base.html' %}
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>Lingua Classifier</title>
 
-{% block content %}
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link href="{{ url_for('static', filename='main.css') }}" rel="stylesheet">
+</head>
+
+<body>
+<nav class="navbar navbar-expand navbar-light bg-light">
+    <div class="container">
+        <a class="navbar-brand" href="{{ url_for('index') }}">Lingua Classifier<sup> alpha</sup></a>
+    </div>
+</nav>
+
+<div class="container p-3">
     <form action="{{ url_for('respondent.add_respondent', research_id=research_id) }}" method="post"
           id="add_respondent_form">
         {{ form.csrf_token }}
@@ -39,4 +54,8 @@
 
         <button type="submit" class="btn btn-primary btn-block m-t-2">Далее</button>
     </form>
-{% endblock %}
+</div>
+
+<script src="{{ url_for('static', filename='main.js') }}"></script>
+</body>
+</html>

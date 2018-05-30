@@ -39,13 +39,13 @@ def end(id):
         if full_respondent:
             full_respondent.filled_all = True
             full_respondent.save()
-            return 'Успех, исследование завершено!'
+            return render_template('add_group_end.html')
     except DoesNotExist:
         return redirect(url_for('index'))
 
 
-@respondent_blueprint.route('/<int:id>')
-@login_required
-def respondent(id):
-    return 'Страница респондента с id= ' + str(id)
+# @respondent_blueprint.route('/<int:id>')
+# @login_required
+# def respondent(id):
+#     return 'Страница респондента с id= ' + str(id)
 

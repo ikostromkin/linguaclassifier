@@ -18,7 +18,7 @@ def add_group(research_id, respondent_id):
                     material.append(word)
 
                 return render_template('add_group.html', material=material, research_id=research_id,
-                                       respondent_id=respondent_id)
+                                       respondent_id=respondent_id, task=researche.task)
         except DoesNotExist:
             return redirect(url_for('index'))
     if request.method == "POST":

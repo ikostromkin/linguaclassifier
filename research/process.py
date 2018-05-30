@@ -26,6 +26,7 @@ def create_report(research_id):
             number_of_groups_list = []  # Список числа групп по респондентам
 
             column_names = fields
+            column_names.insert(0, 'respondent_id')
             for i in range(5-count):
                 column_names.append('')
             column_names.append('Название группы')
@@ -39,17 +40,19 @@ def create_report(research_id):
                 groups = Groups.select().where(Groups.owner == respondent['id']).dicts()
                 number_of_groups_list.append(len(groups))
                 for group in groups:
-                    temp = [
-                        respondent['field1'],
-                        respondent['field2'],
-                        respondent['field3'],
-                        respondent['field4'],
-                        respondent['field5'],
-                        group['name'],
-                        group['elements']
-                    ]
-                    elements_list.append(group['elements'])
-                    ws1.append(temp)
+                    if group['elements']:
+                        temp = [
+                            respondent['id'],
+                            respondent['field1'],
+                            respondent['field2'],
+                            respondent['field3'],
+                            respondent['field4'],
+                            respondent['field5'],
+                            group['name'],
+                            group['elements']
+                        ]
+                        elements_list.append(group['elements'])
+                        ws1.append(temp)
 
             num_elements_list = []
 
@@ -64,9 +67,9 @@ def create_report(research_id):
 
             mat = []
 
-            for i in range(50):
+            for i in range(len(material_list)):
                 l = []
-                for j in range(50):
+                for j in range(len(material_list)):
                     l.append(0)
                 mat.append(l)
 
